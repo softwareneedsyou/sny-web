@@ -1,15 +1,10 @@
-initUser();
-//Requete Ajax recupération Users
-function initUser(){
-    
-    getUsers()
+getUsers()
     .then(function(data){
         initTableUser(data);
     }).catch(function(){
         console.log("Fail load data users");
     });
-    
-}
+
 //Initialisation BootstrapTable avec données
 function initTableUser(users){ 
 	var jsonArray = [];

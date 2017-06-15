@@ -1,6 +1,6 @@
 <?php
 session_start();
-
+$_SESSION['id'];
 
 ?>
 <!DOCTYPE html>
@@ -29,10 +29,10 @@ session_start();
                         <div class="col-xs-1"></div>
                         <div class="col-xs-7">
                             <h4>
-                            Pseudo : <span id="user_pseudo"></span><br><br>
-                            Nom : <span id="user_lastname"></span><br><br>
-                            Prenom : <span id="user_firstname"></span><br><br>
-                            Adresse E-mail :  <span id="user_email"></span><br><br>
+                            Pseudo : <span id="userPseudo"></span><br><br>
+                            Nom : <span id="userLastname"></span><br><br>
+                            Prenom : <span id="userFirstname"></span><br><br>
+                            Adresse E-mail :  <span id="userEmail"></span><br><br>
                             </h4>
                         </div>
                         <div class="col-xs-3 thumb">
@@ -82,6 +82,7 @@ session_start();
         
         <?php include("footer.php"); ?>
         
-        <script src="js/init_user_info.js"></script>
+        <script src="js/api/user.js"></script>
+        <script scr="js/initProfil.js"></script>
     </body>
 </html>

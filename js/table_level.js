@@ -1,14 +1,10 @@
-initLevel();
-//Requete Ajax recupération Users
-function initLevel(){
-    
-    getLevels()
+getLevels()
     .then(function(data){
         initTableLevel(data);
     }).catch(function(){
         console.log("Fail load data levels");
     });
-}
+
 //Initialisation BootstrapTable avec données
 function initTableLevel(level){ 
 	var jsonArray = [];
