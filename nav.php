@@ -27,8 +27,12 @@
                     }
                     
                     if($_SESSION['admin'] == 1){
-                        echo '<li>
-                                <a href="admin.php">Administration</a>
+                        echo '<li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                    <li><a href="admin_user.php">Utilisateur</a></li>
+                                    <li><a href="admin_level.php">Niveau</a></li>
+                                </ul>
                             </li>';
                     }
                 ?>

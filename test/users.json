@@ -1,0 +1,3 @@
+[{"id" : "1", "firstname" : "Bastien", "lastname" : "Farault", "pseudo" : "Bastien", "email" : "test@gmail.com", "is_admin" : "1"} ,
+ {"id" : "2", "firstname" : "Michel", "lastname" : "Maubert", "pseudo" : "Bric", "email" : "test2@gmail.com", "is_admin" : "0"} ,
+ {"id" : "3", "firstname" : "Tristan", "lastname" : "Chuine", "pseudo" : "Tristan", "email" : "test3@gmail.com", "is_admin" : "0"} ]

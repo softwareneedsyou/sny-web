@@ -29,10 +29,10 @@ session_start();
                         <div class="col-xs-1"></div>
                         <div class="col-xs-7">
                             <h4>
-                            Pseudo : -- Pseudo --<br><br>
-                            Nom : -- Nom --<br><br>
-                            Prenom : -- Prenom --<br><br>
-                            Adresse E-mail :  --  Mail --<br><br>
+                            Pseudo : <span id="user_pseudo"></span><br><br>
+                            Nom : <span id="user_lastname"></span><br><br>
+                            Prenom : <span id="user_firstname"></span><br><br>
+                            Adresse E-mail :  <span id="user_email"></span><br><br>
                             </h4>
                         </div>
                         <div class="col-xs-3 thumb">
@@ -82,7 +82,6 @@ session_start();
         
         <?php include("footer.php"); ?>
         
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/init_user_info.js"></script>
     </body>
 </html>

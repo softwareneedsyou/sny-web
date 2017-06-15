@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['co'] = 1;
-$_SESSION['admin'] = 1
+$_SESSION['admin'] = 1;
 
 ?>
 <!DOCTYPE html>

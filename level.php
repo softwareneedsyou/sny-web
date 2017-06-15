@@ -65,7 +65,6 @@ session_start();
         
         <?php include("footer.php"); ?>
         
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/level.js"></script>
     </body>
 </html>
