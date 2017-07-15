@@ -29,7 +29,7 @@ function putUser(id, firstname, lastname, username, email, admin){
     return $.ajax({
        url : ROUTE_USERS + "/" + id,
        type : 'PUT',
-       data : {firstname: firstname, lastname : lastname, username : username, email : email, admin : admin, flag : "Update One User"},
+       data : {id : id, firstname: firstname, lastname : lastname, username : username, email : email, admin : admin, flag : "Update One User"},
        dataType : 'json',
     });
 }

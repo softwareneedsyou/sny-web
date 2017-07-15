@@ -7,6 +7,8 @@ getLevels()
 
 //Initialisation BootstrapTable avec données
 function initTableLevel(level){ 
+    level = level.stories;
+    
 	var jsonArray = [];
     for(var personne in level){
         

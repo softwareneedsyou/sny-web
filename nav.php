@@ -30,8 +30,12 @@
                         echo '<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                    <li><a href="admin_user.php">Utilisateur</a></li>
-                                    <li><a href="admin_level.php">Niveau</a></li>
+                                    <li><a href="admin_user.php">Users</a></li>
+                                    <li><a href="admin_storie.php">Stories</a></li>
+                                    <li><a href="admin_chapter.php">Chapters</a></li>
+                                    <li><a href="admin_score.php">Scores</a></li>
+                                    <li><a href="admin_plugin.php">Plugins</a></li>
+                                    <li><a href="admin_pluginType.php">PluginTypes</a></li>
                                 </ul>
                             </li>';
                     }

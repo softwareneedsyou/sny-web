@@ -23,11 +23,11 @@ session_start();
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
                     <div class="row">
-                        <h3 class="col-xs-10">Gestion User</h3>
-                        <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_User_Modal">Ajout Utilisateur</button>
+                        <h3 class="col-xs-10">Gestion Plugin</h3>
+                        <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_Plugin_Modal">Ajout Plugin</button>
                     </div>
                     
-                    <table id="usersTable"></table>
+                    <table id="pluginTable"></table>
                     
                 </div>
                 <div class="col-xs-1"></div>
@@ -39,21 +39,21 @@ session_start();
         <?php include("footer.php"); ?>
         
         <script src="js/lib/bootstrap-table.js"></script>
-        <script src="js/api/user.js"></script>
-        <script src="js/table_user.js"></script>
+        <script src="js/api/plugin.js"></script>
+        <script src="js/table_plugin.js"></script>
     </body>
 </html>
 
 
 <!-- EDIT USER MODAL -->
-<div id="Edit_User_Modal" class="modal fade">
+<div id="Edit_Plugin_Modal" class="modal fade">
     <div class="modal-dialog">
         
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modification Utilisateur</h4>
+                <h4 class="modal-title">Modification Plugin</h4>
             </div>
             <div class="modal-body">
                 <form id="formAddUser">
@@ -63,8 +63,6 @@ session_start();
                         <h4 class="modal-title text-center" >Saisir les données</h4><br>
                         
                         <span id="errorEditUser"></span><br>
-                        
-                        <div id="editUserId" hidden></div>
 
                         <div class="button-group">
                             <label>Prenom</label>
@@ -110,14 +108,14 @@ session_start();
 
 
 <!-- ADD USER MODAL -->
-<div id="Add_User_Modal" class="modal fade">
+<div id="Add_Plugin_Modal" class="modal fade">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ajout Utilisateur</h4>
+                <h4 class="modal-title">Ajout Plugin</h4>
             </div>
             <div class="modal-body">
                 <form id="formAddUser">

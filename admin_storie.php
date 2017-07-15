@@ -23,11 +23,11 @@ session_start();
                 <div class="col-xs-1"></div>
                 <div class="col-xs-10">
                     <div class="row">
-                        <h3 class="col-xs-10">Gestion User</h3>
-                        <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_User_Modal">Ajout Utilisateur</button>
+                        <h3 class="col-xs-10">Gestion Storie</h3>
+                        <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_Storie_Modal">Ajout Storie</button>
                     </div>
                     
-                    <table id="usersTable"></table>
+                    <table id="storiesTable"></table>
                     
                 </div>
                 <div class="col-xs-1"></div>
@@ -39,61 +39,51 @@ session_start();
         <?php include("footer.php"); ?>
         
         <script src="js/lib/bootstrap-table.js"></script>
-        <script src="js/api/user.js"></script>
-        <script src="js/table_user.js"></script>
+        <script src="js/api/storie.js"></script>
+        <script src="js/table_storie.js"></script>
     </body>
 </html>
 
 
 <!-- EDIT USER MODAL -->
-<div id="Edit_User_Modal" class="modal fade">
+<div id="Edit_Storie_Modal" class="modal fade">
     <div class="modal-dialog">
         
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modification Utilisateur</h4>
+                <h4 class="modal-title">Modification Storie</h4>
             </div>
             <div class="modal-body">
-                <form id="formAddUser">
+                <form id="formAddStorie">
                 <div class="row">
                     <div class="col-xs-2"></div>
                     <div class="col-xs-8" id="Corps_pop">
                         <h4 class="modal-title text-center" >Saisir les données</h4><br>
                         
-                        <span id="errorEditUser"></span><br>
+                        <span id="errorEditStorie"></span><br>
                         
-                        <div id="editUserId" hidden></div>
-
-                        <div class="button-group">
-                            <label>Prenom</label>
-                            <input type="text" class="form-control text-center" id="editUserFirstname" placeholder="Prenom">             
-                        </div>
+                        <div id="editStorieId" hidden></div>
 
                         <div class="button-group">
                             <label>Nom</label>
-                            <input type="text" class="form-control text-center" id="editUserLastname" placeholder="Nom" >
+                            <input type="text" class="form-control text-center" id="editStorieName" placeholder="Nom">             
                         </div>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
-                            <input type="text" class="form-control text-center" id="editUserUsername" placeholder="Pseudo" >
-                        </div>
-
-                        <div class="button-group">
-                            <label>Mail</label>
-                            <input type="text" class="form-control text-center" id="editUserMail" placeholder="Mail" >
+                            <label>Description</label>
+                            <textarea rows="5" class="form-control text-center" id="editStorieDescr" placeholder="Description" ></textarea>
                         </div><br>
                         
                         <div class="button-group">
-                            <label>Admin : </label>
-                            <input type="checkbox" id="editUserAdmin">
+                            <label>Chapitre ID</label>
+                            <input type="text" class="form-control text-center" id="editStorieChapterId" placeholder="Id Chapitre">             
                         </div><br>
 
                         <div class="col-xs-4"></div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-default" id="val_mod" onclick="editUserBdd()">Valider</button>
+                            <button type="button" class="btn btn-default" id="val_mod" onclick="editStorieBdd()">Valider</button>
                         </div>                                           
                     </div>
                     <div class="col-xs-2"></div>
@@ -110,52 +100,42 @@ session_start();
 
 
 <!-- ADD USER MODAL -->
-<div id="Add_User_Modal" class="modal fade">
+<div id="Add_Storie_Modal" class="modal fade">
     <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Ajout Utilisateur</h4>
+                <h4 class="modal-title">Ajout Storie</h4>
             </div>
             <div class="modal-body">
-                <form id="formAddUser">
+                <form id="formAddStorie">
                 <div class="row">
                     <div class="col-xs-2"></div>
                     <div class="col-xs-8" id="Corps_pop">
                         <h4 class="modal-title text-center">Saisir les données</h4><br>
                         
-                        <span id="errorAddUser"></span><br>
-
-                        <div class="button-group">
-                            <label>Prenom</label>
-                            <input type="text" class="form-control text-center" id="addUserFirstname" placeholder="Prenom">             
-                        </div>
+                        <span id="errorAddStorie"></span><br>
 
                         <div class="button-group">
                             <label>Nom</label>
-                            <input type="text" class="form-control text-center" id="addUserLastname" placeholder="Nom" >
+                            <input type="text" class="form-control text-center" id="addStorieName" placeholder="Nom">             
                         </div>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
-                            <input type="text" class="form-control text-center" id="addUserUsername" placeholder="Pseudo" >
-                        </div>
-
-                        <div class="button-group">
-                            <label>Mail</label>
-                            <input type="text" class="form-control text-center" id="addUserMail" placeholder="Mail" >
+                            <label>Description</label>
+                            <textarea rows="5" class="form-control text-center" id="addStorieDescr" placeholder="Description" ></textarea>
                         </div><br>
                         
                         <div class="button-group">
-                            <label>Admin : </label>
-                            <input type="checkbox" id="addUserAdmin">
+                            <label>Chapitre ID</label>
+                            <input type="text" class="form-control text-center" id="addStorieChapterId" placeholder="Id Chapitre">             
                         </div><br>
 
                         <div class="col-xs-4"></div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-default" onclick="addUserBdd()">Valider</button>
+                            <button type="button" class="btn btn-default" onclick="addStorieBdd()">Valider</button>
                         </div>                                           
                     </div>
                     <div class="col-xs-2"></div>
