@@ -3,12 +3,11 @@ getLevels()
         initTableLevel(data);
     }).catch(function(){
         console.log("Fail load data levels");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTableLevel(level){ 
-    level = level.stories;
-    
 	var jsonArray = [];
     for(var personne in level){
         

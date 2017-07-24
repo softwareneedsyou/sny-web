@@ -1,44 +1,44 @@
-function getUsers(){
+function getPlugins(){
     return $.ajax({
-       url : ROUTE_USERS,
+       url : ROUTE_PLUGINS,
        type : 'GET',
-       data : {flag : "Get Users"},
+       data : {flag : "Get Plugins"},
        dataType : 'json',
     });
 }
 
-function getUser(id){
+function getPlugin(id){
     return $.ajax({
-       url : ROUTE_USERS + "/" + id,
+       url : ROUTE_PLUGINS + "/" + id,
        type : 'GET',
-       data : {flag : "Get One User"},
+       data : {flag : "Get One Plugin"},
        dataType : 'json',
     });
 }
 
-function postUser(firstname, lastname, username, email, admin){
+function postPlugin(name, description, pluginTypeId){
     return $.ajax({
-       url : ROUTE_USERS + "/",
+       url : ROUTE_PLUGINS + "/",
        type : 'POST',
-       data : {firstname: firstname, lastname : lastname, username : username, email : email, admin : admin, flag : "Set One User"},
+       data : {name: name, description : description, pluginTypeId : pluginTypeId, flag : "Set One Plugin"},
        dataType : 'json',
     });
 }
 
-function putUser(id, firstname, lastname, username, email, admin){
+function putPlugin(id, name, description, pluginTypeId){
     return $.ajax({
-       url : ROUTE_USERS + "/" + id,
+       url : ROUTE_PLUGINS + "/" + id,
        type : 'PUT',
-       data : {id : id, firstname: firstname, lastname : lastname, username : username, email : email, admin : admin, flag : "Update One User"},
+       data : {name: name, description : description, pluginTypeId : pluginTypeId, flag : "Uptdate One Plugin"},
        dataType : 'json',
     });
 }
 
-function deletUser(id){
+function deletPlugin(id){
     return $.ajax({
-       url : ROUTE_USERS + "/" + id,
+       url : ROUTE_PLUGINS + "/" + id,
        type : 'DELETE',
-       data : {flag : "Delete One User"},
+       data : {flag : "Delete One Plugin"},
        dataType : 'json',
     });
 }

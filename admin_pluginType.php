@@ -26,7 +26,7 @@ session_start();
                         <h3 class="col-xs-10">Gestion Plugin Type</h3>
                         <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_PluginType_Modal">Ajout Plugin Type</button>
                     </div>
-                    
+                    <div id="testConnexion"></div>
                     <table id="pluginTypesTable"></table>
                     
                 </div>

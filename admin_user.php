@@ -26,7 +26,7 @@ session_start();
                         <h3 class="col-xs-10">Gestion User</h3>
                         <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_User_Modal">Ajout Utilisateur</button>
                     </div>
-                    
+                    <div id="testConnexion"></div>
                     <table id="usersTable"></table>
                     
                 </div>
@@ -67,23 +67,28 @@ session_start();
                         <div id="editUserId" hidden></div>
 
                         <div class="button-group">
-                            <label>Prenom</label>
+                            <label>Prenom :</label>
                             <input type="text" class="form-control text-center" id="editUserFirstname" placeholder="Prenom">             
-                        </div>
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Nom</label>
+                            <label>Nom :</label>
                             <input type="text" class="form-control text-center" id="editUserLastname" placeholder="Nom" >
-                        </div>
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
+                            <label>Pseudo :</label>
                             <input type="text" class="form-control text-center" id="editUserUsername" placeholder="Pseudo" >
-                        </div>
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Mail</label>
+                            <label>Mail :</label>
                             <input type="text" class="form-control text-center" id="editUserMail" placeholder="Mail" >
+                        </div><br>
+                        
+                        <div class="button-group">
+                            <label>Image :</label>
+                            <input type="file" id="editUserPicture">
                         </div><br>
                         
                         <div class="button-group">
@@ -129,29 +134,41 @@ session_start();
                         <span id="errorAddUser"></span><br>
 
                         <div class="button-group">
-                            <label>Prenom</label>
+                            <label>Prenom :</label>
                             <input type="text" class="form-control text-center" id="addUserFirstname" placeholder="Prenom">             
-                        </div>
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Nom</label>
+                            <label>Nom :</label>
                             <input type="text" class="form-control text-center" id="addUserLastname" placeholder="Nom" >
-                        </div>
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
+                            <label>Pseudo :</label>
                             <input type="text" class="form-control text-center" id="addUserUsername" placeholder="Pseudo" >
-                        </div>
+                        </div><br>
+                        
+                        <div class="button-group">
+                            <label>Mot de Passe :</label>
+                            <input type="password" class="form-control text-center" id="addUserPwd" placeholder="Mot de passe" >
+                        </div><br>
 
                         <div class="button-group">
-                            <label>Mail</label>
+                            <label>Mail :</label>
                             <input type="text" class="form-control text-center" id="addUserMail" placeholder="Mail" >
+                        </div><br>
+                        
+                        <div class="button-group">
+                            <label>Image :</label>
+                            <input type="file" id="addUserPicture">
                         </div><br>
                         
                         <div class="button-group">
                             <label>Admin : </label>
                             <input type="checkbox" id="addUserAdmin">
                         </div><br>
+                        
+                        <div id="test"></div>
 
                         <div class="col-xs-4"></div>
                         <div class="col-xs-4">

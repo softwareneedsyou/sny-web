@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSION['id'];
+$_SESSION['id'] = 2;
 
 ?>
 <!DOCTYPE html>
@@ -28,16 +28,17 @@ $_SESSION['id'];
                     <div class="row">
                         <div class="col-xs-1"></div>
                         <div class="col-xs-7">
+                            <div id="profilUserId" hidden><?php echo $_SESSION['id'];?></div>
                             <h4>
-                            Pseudo : <span id="userPseudo"></span><br><br>
-                            Nom : <span id="userLastname"></span><br><br>
-                            Prenom : <span id="userFirstname"></span><br><br>
-                            Adresse E-mail :  <span id="userEmail"></span><br><br>
+                                Pseudo : <span id="profilUsername"></span><br><br>
+                                Nom : <span id="profilLastname"></span><br><br>
+                                Prenom : <span id="profilFirstname"></span><br><br>
+                                Adresse E-mail :  <span id="profilEmail"></span><br><br>
                             </h4>
                         </div>
                         <div class="col-xs-3 thumb">
                             <a class="thumbnail" href="#">
-                                <img class="img-responsive" src="http://placehold.it/400x400" alt="">
+                                <div id="profilPicture"></div>
                             </a>
                         </div>
                     </div>
@@ -83,6 +84,6 @@ $_SESSION['id'];
         <?php include("footer.php"); ?>
         
         <script src="js/api/user.js"></script>
-        <script scr="js/initProfil.js"></script>
+        <script src="js/initProfil.js"></script>
     </body>
 </html>

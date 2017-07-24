@@ -3,11 +3,11 @@ getStories()
         initTableStories(data);
     }).catch(function(){
         console.log("Fail load data chapter");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTableStories(storie){ 
-    storie = storie.stories;
 	var jsonArray = [];
     for(var str in storie){
 
@@ -15,7 +15,8 @@ function initTableStories(storie){
             id : storie[str].id,
             name : storie[str].name,
             description : storie[str].description,
-            chapterId : storie[str].chapterId,
+            compilator : storie[str].compilator,
+            ChapterId : storie[str].ChapterId,
             createdAt : storie[str].createdAt,
             updatedAt : storie[str].updatedAt
         });
@@ -38,8 +39,12 @@ function initTableStories(storie){
 	        title: 'Description',
             sortable : true,
 	    }, {
-	        field: 'chapterId',
+	        field: 'ChapterId',
 	        title: 'Id Chapitre',
+            sortable : true,
+	    }, {
+	        field: 'compilator',
+	        title: 'Id Compilateur',
             sortable : true,
 	    }, {
 	        field: 'createdAt',
@@ -86,7 +91,7 @@ window.operateEventsModels = {
     	$("#editChapterId").val(row.id);
     	$("#editStorieName").val(row.name);
     	$("#editStorieDescr").val(row.description);
-    	$("#editStorieChapterId").val(row.chapterId);
+    	$("#editStorieChapterId").val(row.ChapterId);
         
     	
         //Déclanchement de la fonction de modification sur le bouton de validation de la Modal
@@ -120,9 +125,9 @@ function editStorieBdd(id) {
     if(verif == true){
         var name = $("#editStorieName").val();
         var description = $("#editStorieDescr").val();
-        var ChapterId = $("#editStorieChapterId").val();
+        var chapterId = $("#editStorieChapterId").val();
         
-        putStorie(id, name, description, ChapterId)
+        putStorie(id, name, description, chapterId)
         .then(function(){
             alert("Storie Modifié");
             location.reload();
@@ -143,9 +148,9 @@ function addStorieBdd(){
     if(verif == true){
         var name = $("#addStorieName").val();
         var description = $("#addStorieDescr").val();
-        var ChapterId = $("#addStorieChapterId").val();
+        var chapterId = $("#addStorieChapterId").val();
         
-        postStorie(name, description, ChapterId)
+        postStorie(name, description, chapterId)
         .then(function(){
             alert("Storie Ajouté");
             location.reload();

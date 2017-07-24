@@ -3,11 +3,11 @@ getChapters()
         initTableChapters(data);
     }).catch(function(){
         console.log("Fail load data chapter");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTableChapters(chapter){ 
-    chapter = chapter.chapters;
 	var jsonArray = [];
     for(var chapitre in chapter){
 

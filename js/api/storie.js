@@ -16,20 +16,20 @@ function getStorie(id){
     });
 }
 
-function postStorie(name, description, ChapterId){
+function postStorie(name, description, chapterId){
     return $.ajax({
        url : ROUTE_STORIES + "/",
        type : 'POST',
-       data : {name: name, description : description, ChapterId : ChapterId, flag : "Set One Storie"},
+       data : {name: name, description : description, chapterId : chapterId, flag : "Set One Storie"},
        dataType : 'json',
     });
 }
 
-function putStorie(id, name, description, ChapterId){
+function putStorie(id, name, description, chapterId){
     return $.ajax({
        url : ROUTE_STORIES + "/" + id,
        type : 'PUT',
-       data : {id : id, name: name, description : description, ChapterId : ChapterId, flag : "Update One Storie"},
+       data : {id : id, name: name, description : description, chapterId : chapterId, flag : "Update One Storie"},
        dataType : 'json',
     });
 }

@@ -23,10 +23,13 @@
                     } else {
                         echo '<li>
                                 <a data-toggle="modal" data-target="#Connexion_Modal">Connexion</a>
-                            </li>';
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target="#Add_User_Modal">Inscription</a>
+                            ';
                     }
                     
-                    if($_SESSION['admin'] == 1){
+                    if($_SESSION['admin'] == true){
                         echo '<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration<span class="caret"></span></a>
                                     <ul class="dropdown-menu">
@@ -39,30 +42,141 @@
                                 </ul>
                             </li>';
                     }
+                    if($_SESSION['co'] == 1){
+                        echo '<li>
+                                <a href="deco.php">Deconnexion</a>
+                            </li>';
+                    }
                 ?>
             </ul>
         </div>
     </div>
 </nav>
+<!--
+<script src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/crypto-js/tags/3.1.2/build/rollups/md5.js"></script>
+<script type="text/javascript" src="js/lib/digestAuthRequest.js"></script>
+<script src="js/lib/digest-ajax.js"></script>-->
 
+<script src="js/nav.js"></script>
+<script src="js/api/user.js"></script>
+<script src="js/api/login.js"></script>
 
-<div class="modal fade" id="Connexion_Modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content text-center">
+<?php
+
+if($_SESSION['co'] == 0){
+
+echo '
+
+<!-- CONNEXION USER MODAL -->
+<div id="Connexion_Modal" class="modal fade">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Connexion</h4>
+            </div>
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 text-center> Connexion </h3><br>
-                <hr>
+                <form id="formCoUser">
                 <div class="row">
-                    <label class="col-xs-4">Adresse E-mail : </label>
-                    <input type="email" class="form-control col-xs-8" placeholder="john.doe@example.com">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8" id="Corps_pop">
+                        <h4 class="modal-title text-center">Saisir les données</h4><br>
+                        
+                        <span id="errorConnexionUser"></span><br>
+
+                        <div class="button-group">
+                            <label>Pseudo</label>
+                            <input type="text" class="form-control text-center" id="connexionUsername" placeholder="Pseudo" >
+                        </div><br>
+                        
+                        <div class="button-group">
+                            <label>Mot de Passe</label>
+                            <input type="password" class="form-control text-center" id="connexionPwd" placeholder="Mot de passe" >
+                        </div><br>
+
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <button type="button" class="btn btn-default" onclick="connexion()">Valider</button>
+                        </div>                                           
+                    </div>
+                    <div class="col-xs-2"></div>
                 </div>
-                <div class="row">
-                    <label class="col-xs-4">Mot de Passe : </label>
-                    <input type="password" class="form-control" placeholder="Mot de Passe">
-                </div><br><hr>
-                    <button type="submit" class="btn btn-default" data-dismiss="modal">Valider</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
             </div>
         </div>
+
     </div>
 </div>
+
+
+
+<!-- ADD USER MODAL -->
+<div id="Add_User_Modal" class="modal fade">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Inscription</h4>
+            </div>
+            <div class="modal-body">
+                <form id="formInscription">
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-xs-8" id="Corps_pop">
+                        <h4 class="modal-title text-center">Saisir les données</h4><br>
+                        
+                        <span id="errorAddUser"></span><br>
+
+                        <div class="button-group">
+                            <label>Prenom</label>
+                            <input type="text" class="form-control text-center" id="addUserFirstnameCo" placeholder="Prenom"> 
+                        </div><br>
+
+                        <div class="button-group">
+                            <label>Nom</label>
+                            <input type="text" class="form-control text-center" id="addUserLastnameCo" placeholder="Nom" >
+                        </div><br>
+
+                        <div class="button-group">
+                            <label>Pseudo</label>
+                            <input type="text" class="form-control text-center" id="addUserUsernameCo" placeholder="Pseudo" >
+                        </div><br>
+                        
+                        <div class="button-group">
+                            <label>Mot de Passe</label>
+                            <input type="password" class="form-control text-center" id="addUserPwdCo" placeholder="Mot de passe" >
+                        </div><br>
+
+                        <div class="button-group">
+                            <label>Mail</label>
+                            <input type="text" class="form-control text-center" id="addUserMailCo" placeholder="Mail" >
+                        </div><br>
+
+                        <div class="col-xs-4"></div>
+                        <div class="col-xs-4">
+                            <button type="button" class="btn btn-default" onclick="addUser()">Valider</button>
+                        </div>                                           
+                    </div>
+                    <div class="col-xs-2"></div>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+';
+
+}?>

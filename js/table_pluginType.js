@@ -3,11 +3,11 @@ getPluginTypes()
         initTablePluginTypes(data);
     }).catch(function(){
         console.log("Fail load data chapter");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTablePluginTypes(pluginType){ 
-    pluginType = pluginType.pluginTypes;
 	var jsonArray = [];
     for(var pluginT in pluginType){
 
@@ -94,7 +94,7 @@ window.operateEventsModels = {
        
        	if (confirm("Etes-vous sûr de vouloir supprimer le PluginType : "+row.name+"?")) {
 		    deletPluginType(row.id).then(function(){
-                alert("Chapitre Supprimé");
+                alert("PluginType Supprimé");
                 location.reload();
             }).catch(function(){
                 alert("Erreur lors de la suppression du PluginType");

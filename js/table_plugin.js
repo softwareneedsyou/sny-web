@@ -1,28 +1,27 @@
 getPlugins()
     .then(function(data){
-        initTablePlugin(data);
+        initTablePlugins(data);
     }).catch(function(){
-        console.log("Fail load data users");
+        console.log("Fail load data chapter");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
-function initTablePlugin(users){ 
-    users = users.users;
+function initTablePlugins(plugin){
 	var jsonArray = [];
-    for(var personne in users){
-        
-
+    for(var plugins in plugin){
 
         jsonArray.push({
-        id : users[personne].id,
-        name : users[personne].name,
-        description : users[personne].description,
-        createdAt : users[personne].createdAt,
-        updatedAt : users[personne].updatedAt
+            id : plugin[plugins].id,
+            name : plugin[plugins].name,
+            description : plugin[plugins].description,
+            PluginTypeId : plugin[plugins].PluginTypeId,
+            createdAt : plugin[plugins].createdAt,
+            updatedAt : plugin[plugins].updatedAt
         });
         
     }
-	$('#usersTable').bootstrapTable({
+	$('#pluginsTable').bootstrapTable({
 	    pagination : true,
 	    pageSize : 10,
 	    search : true,
@@ -39,8 +38,12 @@ function initTablePlugin(users){
 	        title: 'Description',
             sortable : true,
 	    }, {
+	        field: 'PluginTypeId',
+	        title: 'Type de Plugin',
+            sortable : true,
+	    }, {
 	        field: 'createdAt',
-	        title: 'Créer',
+	        title: 'Créé',
             sortable : true,
 	    }, {
 	        field: 'updatedAt',
@@ -63,55 +66,45 @@ function operateFormatterModels(value, row, index) {
 	    '<center><a class="modifyModel" href="javascript:void(0)" title="Editer">',
 	    '<i class="glyphicon glyphicon-edit"></i>',
 	    '</a>&nbsp;&nbsp;&nbsp;',
-	    '<a class="deleteUser" href="javascript:void(0)" title="Supprimer">',
+	    '<a class="deletePlugin" href="javascript:void(0)" title="Supprimer">',
 	    '<i class="glyphicon glyphicon-remove"></i>',
 	    '</a></center>'
 	].join('');
 }
-/*
+
 //Méthode appelée lorsque l'utilisateur clique sur les boutons "supprimer" ou "éditer" un utilisateur
 window.operateEventsModels = {
     'click .modifyModel': function (e, value, row, index) {
         
     	//On met les champs du modal à vide
-    	$("#editUserId").empty();
-    	$("#editUserFirstname").empty();
-    	$("#editUserLastname").empty();
-    	$("#editUserUsername").empty();
-    	$("#editUserMail").empty();
-    	$("#editUserAdmin").prop('checked', false);
+    	$("#editPluginId").empty();
+    	$("#editPluginName").empty();
+    	$("#editPluginDescr").empty();
+    	$("#editPluginPluginTypeId").empty();
     	
         //On recupere les valeurs du tableau pour les mettres dans les champs
-    	$("#editUserId").val(row.id_user);
-    	$("#editUserFirstname").val(row.firstname);
-    	$("#editUserLastname").val(row.lastname);
-    	$("#editUserUsername").val(row.username);
-    	$("#editUserMail").val(row.email);
+    	$("#editPluginId").val(row.id);
+    	$("#editPluginName").val(row.name);
+    	$("#editPluginDescr").val(row.description);
+    	$("#editPluginPluginTypeId").val(row.PluginTypeId);
         
-        
-        if(row.is_admin.toLowerCase() == "administrateur"){
-        	$("#editUserAdmin").prop('checked', true);
-        }
-        else{
-        	$("#editUserAdmin").prop('checked', false);
-        }
     	
         //Déclanchement de la fonction de modification sur le bouton de validation de la Modal
-    	$("#val_mod").attr("onclick", "editUserBdd("+ row.id_user +")");;
+    	$("#val_mod").attr("onclick", "editPluginBdd("+ row.id +")");;
         
         //on fait poper le modal modif utilisateur
-        $('#Edit_User_Modal').modal('show');
+        $('#Edit_Plugin_Modal').modal('show');
         
 
     },
-    'click .deleteUser': function (e, value, row, index) {
+    'click .deletePlugin': function (e, value, row, index) {
        
-       	if (confirm("Etes-vous sûr de vouloir supprimer l'utilisateur : "+row.lastname+"?")) {
-		    deletUser(row.id).then(function(){
-                alert("Utilisateur Supprimé");
+       	if (confirm("Etes-vous sûr de vouloir supprimer le Plugin : "+row.name+"?")) {
+		    deletPlugin(row.id).then(function(){
+                alert("Plugin Supprimé");
                 location.reload();
             }).catch(function(){
-                alert("Erreur lors de la suppression de l'utilisateur");
+                alert("Erreur lors de la suppression du Plugin");
             });
         }
     },
@@ -120,51 +113,47 @@ window.operateEventsModels = {
 
 //Fonction déclanchée sur le Onclick de la modification utilisateur
 //Lance la verification, puis Ajax vers le node ou Affichage des Erreur
-function editUserBdd(id) {
+function editPluginBdd(id) {
     
     var verif = verificationInput("edit");
     
     if(verif == true){
-        var firstname = $("#editUserFirstname").val();
-        var lastname = $("#editUserLastname").val();
-        var username = $("#editUserUsername").val();
-        var email = $("#editUserMail").val();
-        var is_admin = document.getElementById("editUserAdmin").checked
+        var name = $("#editPluginName").val();
+        var description = $("#editPluginDescr").val();
+        var pluginTypeId = $("#editPluginPluginTypeId").val();
         
-        putUser(id, firstname, lastname, username, email, is_admin)
+        putPlugin(id, name, description, pluginTypeId)
         .then(function(){
-            alert("Utilisateur Modifié");
+            alert("Plugin Modifié");
             location.reload();
         }).catch(function(){
-            alert("Erreur lors de la modification de l'utilisateur");
+            alert("Erreur lors de la modification du Plugin");
         });
     } else {
-        $("#errorEditUser").html(verif);
+        $("#errorEditPlugin").html(verif);
     }
 }
 
 //Fonction déclanchée sur le Onclick de l'ajout utilisateur
 //Lance la verification, puis Ajax vers le node ou Affichage des Erreur
-function addUserBdd(){
+function addPluginBdd(){
     
     var verif = verificationInput("add");
     
     if(verif == true){
-        var firstname = $("#addUserFirstname").val();
-        var lastname = $("#addUserLastname").val();
-        var username = $("#addUserUsername").val();
-        var email = $("#addUserMail").val();
-        var is_admin = document.getElementById("addUserAdmin").checked
+        var name = $("#addPluginName").val();
+        var description = $("#addPluginDescr").val();
+        var pluginTypeId = $("#addPluginPluginTypeId").val();
         
-        postUser(firstname, lastname, username, email, is_admin)
+        postPlugin(name, description, pluginTypeId)
         .then(function(){
-            alert("Utilisateur Ajouté");
+            alert("Plugin Ajouté");
             location.reload();
         }).catch(function(){
-            alert("Erreur lors de l'ajout d'utilisateur");
+            alert("Erreur lors de l'ajout du Plugin");
         });
     } else {
-        $("#errorAddUser").html(verif);
+        $("#errorAddPlugin").html(verif);
     }
 }
 
@@ -172,33 +161,24 @@ function addUserBdd(){
 //In : choise -> add ou edit
 //Out : true si champ valide ou Message erreur
 function verificationInput(choise){
-    var firstname = $("#"+ choise +"UserFirstname").val();
-    var lastname = $("#"+ choise +"UserLastname").val();
-    var username = $("#"+ choise +"UserUsername").val();
-    var email = $("#"+ choise +"UserMail").val();
+    var name = $("#"+ choise +"PluginName").val();
+    var description = $("#"+ choise +"PluginDescr").val();
+    var PluginTypeId = $("#"+ choise +"PluginPluginTypeId").val();
     
     var error = 0;
     var errorMessage = "";
     
-    if(firstname.length < 3 || firstname.length > 20){
-        error ++;
-        errorMessage += "Le Prénom doit contenir entre 3 et 20 caracteres<br>";
-    }
-    
-    if(lastname.length < 3 || lastname.length > 20){
+    if(name.length < 3 || name.length > 20){
         error ++;
         errorMessage += "Le Nom doit contenir entre 3 et 20 caracteres<br>";
     }
     
-    if(username.length < 3 || username.length > 20){
+    if(description.length < 3 || description.length > 255){
         error ++;
-        errorMessage += "Le Pseudo doit contenir entre 3 et 20 caracteres<br>";
+        errorMessage += "La Description doit contenir entre 3 et 255 caracteres<br>";
     }
     
-    if(validateEmail(email) == false){
-        error ++;
-        errorMessage += "L'email doit etre valide<br>";
-    }
+    
     
     if(error == 0){
         return true;
@@ -206,11 +186,3 @@ function verificationInput(choise){
         return errorMessage;
     }
 }
-
-//Fonction de verification d'email avec Regex
-//In : email
-//Out : true ou false
-function validateEmail(email) {
-    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return regex.test(email);
-}*/

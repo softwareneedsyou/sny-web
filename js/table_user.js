@@ -3,11 +3,11 @@ getUsers()
         initTableUser(data);
     }).catch(function(){
         console.log("Fail load data users");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTableUser(users){ 
-    users = users.users;
 	var jsonArray = [];
     for(var personne in users){
         
@@ -126,7 +126,7 @@ window.operateEventsModels = {
     },
     'click .deleteUser': function (e, value, row, index) {
        
-       	if (confirm("Etes-vous sûr de vouloir supprimer l'utilisateur : "+row.lastname+"?")) {
+       	if (confirm("Etes-vous sûr de vouloir supprimer l'utilisateur : "+row.username+"?")) {
 		    deletUser(row.id).then(function(){
                 alert("Utilisateur Supprimé");
                 location.reload();
@@ -150,6 +150,7 @@ function editUserBdd(id) {
         var username = $("#editUserUsername").val();
         var email = $("#editUserMail").val();
         var admin = document.getElementById("editUserAdmin").checked;
+
         
         if(admin == true){
             admin = 1;
@@ -180,9 +181,20 @@ function addUserBdd(){
         var lastname = $("#addUserLastname").val();
         var username = $("#addUserUsername").val();
         var email = $("#addUserMail").val();
+        var password = $("#addUserPwd").val();
         var admin = document.getElementById("addUserAdmin").checked
+        var picture = $("#addUserPicture")[0]
         
-        postUser(firstname, lastname, username, email, admin)
+        
+        //console.log(picture);
+        
+        if(admin == true){
+            admin = 1;
+        } else {
+            admin = 0;
+        }
+        
+        postUser(firstname, lastname, username, password, email, admin)
         .then(function(){
             alert("Utilisateur Ajouté");
             location.reload();
@@ -224,6 +236,14 @@ function verificationInput(choise){
     if(validateEmail(email) == false){
         error ++;
         errorMessage += "L'email doit etre valide<br>";
+    }
+    
+    if(choise == "add"){
+        var password = $("#addUserPwd").val();
+        if(password.length < 3 || password.length >20){
+            error ++;
+            errorMessage += "Le Mot de passe doit contenir entre 3 et 20 caracteres<br>";
+        }
     }
     
     if(error == 0){

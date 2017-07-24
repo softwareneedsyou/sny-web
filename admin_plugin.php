@@ -26,8 +26,8 @@ session_start();
                         <h3 class="col-xs-10">Gestion Plugin</h3>
                         <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_Plugin_Modal">Ajout Plugin</button>
                     </div>
-                    
-                    <table id="pluginTable"></table>
+                    <div id="testConnexion"></div>
+                    <table id="pluginsTable"></table>
                     
                 </div>
                 <div class="col-xs-1"></div>
@@ -62,36 +62,28 @@ session_start();
                     <div class="col-xs-8" id="Corps_pop">
                         <h4 class="modal-title text-center" >Saisir les données</h4><br>
                         
-                        <span id="errorEditUser"></span><br>
-
-                        <div class="button-group">
-                            <label>Prenom</label>
-                            <input type="text" class="form-control text-center" id="editUserFirstname" placeholder="Prenom">             
-                        </div>
+                        <span id="errorEditPlugin"></span><br>
+                        
+                        <div id="editPluginId" hidden></div>
 
                         <div class="button-group">
                             <label>Nom</label>
-                            <input type="text" class="form-control text-center" id="editUserLastname" placeholder="Nom" >
+                            <input type="text" class="form-control text-center" id="editPluginName" placeholder="Nom">             
                         </div>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
-                            <input type="text" class="form-control text-center" id="editUserUsername" placeholder="Pseudo" >
-                        </div>
-
-                        <div class="button-group">
-                            <label>Mail</label>
-                            <input type="text" class="form-control text-center" id="editUserMail" placeholder="Mail" >
+                            <label>Description</label>
+                            <textarea rows="5" class="form-control text-center" id="editPluginDescr" placeholder="Description" ></textarea>
                         </div><br>
                         
                         <div class="button-group">
-                            <label>Admin : </label>
-                            <input type="checkbox" id="editUserAdmin">
+                            <label>ID Type Plugin</label>
+                            <input type="text" class="form-control text-center" id="editPluginPluginTypeId" placeholder=" ID Type de Plugin">             
                         </div><br>
 
                         <div class="col-xs-4"></div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-default" id="val_mod" onclick="editUserBdd()">Valider</button>
+                            <button type="button" class="btn btn-default" id="val_mod" onclick="editPluginBdd()">Valider</button>
                         </div>                                           
                     </div>
                     <div class="col-xs-2"></div>
@@ -124,36 +116,26 @@ session_start();
                     <div class="col-xs-8" id="Corps_pop">
                         <h4 class="modal-title text-center">Saisir les données</h4><br>
                         
-                        <span id="errorAddUser"></span><br>
-
-                        <div class="button-group">
-                            <label>Prenom</label>
-                            <input type="text" class="form-control text-center" id="addUserFirstname" placeholder="Prenom">             
-                        </div>
+                        <span id="errorAddPluginType"></span><br>
 
                         <div class="button-group">
                             <label>Nom</label>
-                            <input type="text" class="form-control text-center" id="addUserLastname" placeholder="Nom" >
+                            <input type="text" class="form-control text-center" id="addPluginName" placeholder="Nom">             
                         </div>
 
                         <div class="button-group">
-                            <label>Pseudo</label>
-                            <input type="text" class="form-control text-center" id="addUserUsername" placeholder="Pseudo" >
-                        </div>
-
-                        <div class="button-group">
-                            <label>Mail</label>
-                            <input type="text" class="form-control text-center" id="addUserMail" placeholder="Mail" >
+                            <label>Description</label>
+                            <textarea rows="5" class="form-control text-center" id="addPluginDescr" placeholder="Description" ></textarea>
                         </div><br>
                         
                         <div class="button-group">
-                            <label>Admin : </label>
-                            <input type="checkbox" id="addUserAdmin">
+                            <label>ID Type Plugin</label>
+                            <input type="text" class="form-control text-center" id="addPluginPluginTypeId" placeholder=" ID Type de Plugin">             
                         </div><br>
 
                         <div class="col-xs-4"></div>
                         <div class="col-xs-4">
-                            <button type="button" class="btn btn-default" onclick="addUserBdd()">Valider</button>
+                            <button type="button" class="btn btn-default" onclick="addPluginBdd()">Valider</button>
                         </div>                                           
                     </div>
                     <div class="col-xs-2"></div>

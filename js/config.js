@@ -11,3 +11,5 @@ const ROUTE_PLUGINTYPE = API_URL + "/pluginTypes";
 const ROUTE_CHAPTERS = API_URL + "/chapters";
 
 const ROUTE_SCORES = API_URL + "/scores";
+
+const ROUTE_LOGIN = API_URL + "/login/basic";

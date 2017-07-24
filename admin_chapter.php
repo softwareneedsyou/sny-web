@@ -26,7 +26,7 @@ session_start();
                         <h3 class="col-xs-10">Gestion Chapitre</h3>
                         <button class="col-xs-2 btn btn-default" data-toggle="modal" data-target="#Add_Chapter_Modal">Ajout Chapitre</button>
                     </div>
-                    
+                    <div id="testConnexion"></div>
                     <table id="chaptersTable"></table>
                     
                 </div>

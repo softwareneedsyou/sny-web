@@ -3,11 +3,11 @@ getUsers()
         initTableUser(data);
     }).catch(function(){
         console.log("Fail load data users");
+        $('#testConnexion').append ( "<h3> ! Error :  Verifier que vous etes bien connecté à internet et que le serveur Node est bien lancé ! </h3>");
     });
 
 //Initialisation BootstrapTable avec données
 function initTableUser(users){ 
-    users = users.users;
 	var jsonArray = [];
     for(var personne in users){
         

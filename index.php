@@ -1,7 +1,10 @@
 <?php
 session_start();
-$_SESSION['co'] = 1;
-$_SESSION['admin'] = 1;
+if(!isset($_SESSION['co'])){
+    $_SESSION['co'] = 0;
+    $_SESSION['admin'] = 0;
+    $_SESSION['id'] = 0;
+}
 
 ?>
 <!DOCTYPE html>
@@ -38,7 +41,7 @@ $_SESSION['admin'] = 1;
         
         <?php include("footer.php"); ?>
         
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/lib/jquery.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
     </body>
 </html>

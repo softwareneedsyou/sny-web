@@ -16,11 +16,18 @@ function getUser(id){
     });
 }
 
-function postUser(firstname, lastname, username, email, admin){
+function postUser(firstname, lastname, username, password, email, admin){
     return $.ajax({
        url : ROUTE_USERS + "/",
        type : 'POST',
-       data : {firstname: firstname, lastname : lastname, username : username, email : email, admin : admin, flag : "Set One User"},
+       data : {
+           firstname: firstname,
+           lastname : lastname,
+           username : username,
+           password : password,
+           email : email,
+           admin : admin,
+           flag : "Set One User"},
        dataType : 'json',
     });
 }
